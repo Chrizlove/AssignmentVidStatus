@@ -8,25 +8,34 @@ public class VideoModel {
 
     @SerializedName("video")
     String url;
-    //@SerializedName("username")
-    //String title;
     @SerializedName("description")
     String desc;
-    //@SerializedName("user_info")
-    //ArrayList<UserInfo> user_info;
+    @SerializedName("user_info")
+    UserInfo user_info;
 
-    //public ArrayList<UserInfo> getUser_info() {
-        //return user_info;
-   // }
+    Boolean isPlaying = false;
 
-    //public void setUser_info(ArrayList<UserInfo> user_info) {
-    //    this.user_info = user_info;
-    //}
+    public Boolean getPlaying() {
+        return isPlaying;
+    }
 
-    public VideoModel(String url, String desc) {
+    public void setPlaying(Boolean playing) {
+        isPlaying = playing;
+    }
+
+    public UserInfo getUser_info() {
+        return user_info;
+    }
+
+    public void setUser_info(UserInfo user_info) {
+        this.user_info = user_info;
+    }
+
+    public VideoModel(String url, String desc, UserInfo user_info,Boolean isPlaying) {
         this.url = url;
         this.desc = desc;
-       // this.user_info = user_info;
+        this.user_info = user_info;
+        this.isPlaying = isPlaying;
     }
 
     public String getUrl() {

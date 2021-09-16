@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class VideoAPIData{
 
-    //@SerializedName("msg")
+    @SerializedName("msg")
     private ArrayList<VideoModel> msg;
 
     public ArrayList<VideoModel> getMsg() {
