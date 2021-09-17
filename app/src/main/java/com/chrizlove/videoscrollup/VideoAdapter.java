@@ -61,7 +61,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
         {
             simpleExoPlayer = new SimpleExoPlayer.Builder(itemView.getContext()).build();
             playerview.setPlayer(simpleExoPlayer);
-
             title.setText(videoModel.getUser_info().getTitle());
             desc.setText(videoModel.getDesc());
             MediaItem mediaItem = MediaItem.fromUri(videoModel.getUrl());
@@ -71,9 +70,28 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             playerview.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
             simpleExoPlayer.setVideoScalingMode(C.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
             simpleExoPlayer.addMediaItem(mediaItem);
-            simpleExoPlayer.setPlayWhenReady(true);
-                simpleExoPlayer.prepare();
+            if(videoModel.getPlaying()!=null)
+            {
+                simpleExoPlayer.setPlayWhenReady(true);
+            }
+            else{
+                simpleExoPlayer.setPlayWhenReady(false);
+            }
+            simpleExoPlayer.prepare();
         }
     }
 
+    @Override
+    public void onViewAttachedToWindow(@NonNull VideoViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        holder.playerview.getPlayer().setPlayWhenReady(true);
+        holder.playerview.getPlayer().prepare();
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull VideoViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.playerview.getPlayer().setPlayWhenReady(false);
+        holder.playerview.getPlayer().stop();
+    }
 }
