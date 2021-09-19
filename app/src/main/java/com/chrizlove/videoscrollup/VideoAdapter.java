@@ -1,6 +1,5 @@
 package com.chrizlove.videoscrollup;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +31,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.video_lyt,parent,false);
         return new VideoViewHolder(view);
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
-    holder.setData(videos.get(position));
+        holder.setData(videos.get(position));
     }
 
     @Override
